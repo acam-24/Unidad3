@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>#{str.grupoListTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h1>#{str.grupoListTitle}</h1>
+                <h:form>
+                    <p:commandButton value="#{str.buttonAdd}"
+                                     action="#{grupoBean.iniciar()}"></p:commandButton>
+                </h:form>
+                <p:dataTable value="#{grupoBean.grupos}" var="g">
+                    <p:column headerText="#{str.action}">
+                        <h:form>
+                            <p:commandButton value="#{str.buttonEdit}"
+                                             action="#{grupoBean.editar(g)}"></p:commandButton>
+                        </h:form>
+                    </p:column>
+                    <p:column headerText="#{str.groupNameHeader}">
+                        <p:outputLabel value="#{g.nombreGrupo}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.studentNameHeader}">
+                        <p:outputLabel value="#{g.alumnos}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.quarterHeader}">
+                        <p:outputLabel value="#{g.cuatrimestre}"></p:outputLabel>
+                    </p:column>
+                    <p:column headerText="#{str.teacherNameHeader}">
+                        <p:outputLabel value="#{g.docente.nombre}"></p:outputLabel>
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
